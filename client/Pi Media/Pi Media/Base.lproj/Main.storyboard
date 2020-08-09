@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y0s-o8-7JN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Files-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="Pi_Media" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nAx-Bt-Hq3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nAx-Bt-Hq3" secondAttribute="bottom" id="2kA-aG-f0q"/>
+                            <constraint firstItem="nAx-Bt-Hq3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8gM-x8-zw0"/>
+                            <constraint firstItem="nAx-Bt-Hq3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="I6y-dM-6Ye"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nAx-Bt-Hq3" secondAttribute="trailing" id="LgF-gh-WVD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Files" id="qCd-W9-oV2"/>
+                    <connections>
+                        <outlet property="tableView" destination="nAx-Bt-Hq3" id="qzf-Rq-hSp"/>
+                        <segue destination="Wmc-QH-M37" kind="show" id="qSA-tl-ZuP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896" y="138"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VF8-HD-6Ri">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y0s-o8-7JN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H6n-fA-CTm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="A3b-aX-NNo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgg-K5-eJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+        <!--View Detail Controller-->
+        <scene sceneID="GVW-TB-k3I">
+            <objects>
+                <viewController storyboardIdentifier="ViewDetailController" id="Wmc-QH-M37" customClass="ViewDetailController" customModule="Pi_Media" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HsZ-rk-qgt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1yQ-0K-vK9">
+                                <rect key="frame" x="16" y="104" width="382" height="176"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="f4L-10-xfa">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4o-mr-j5i" customClass="LoadingButton" customModule="Pi_Media" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="48"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Download"/>
+                                                <connections>
+                                                    <action selector="downloadButtonPress" destination="Wmc-QH-M37" eventType="touchUpInside" id="uBL-mB-R3j"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1AG-mG-LKL" customClass="LoadingButton" customModule="Pi_Media" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="183" height="48"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Delete"/>
+                                                <connections>
+                                                    <action selector="deleteButtonPress" destination="Wmc-QH-M37" eventType="touchUpInside" id="8IN-yz-apX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="KMm-vE-fLm"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Q28-JO-JhU">
+                                        <rect key="frame" x="0.0" y="64" width="382" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxB-iP-G0t">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Play"/>
+                                                <connections>
+                                                    <action selector="playButtonPress" destination="Wmc-QH-M37" eventType="touchUpInside" id="Q8y-7s-g8D"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="K5E-Qv-aaa"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CKH-Ia-th1">
+                                        <rect key="frame" x="0.0" y="128" width="382" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-iq-0Ck" customClass="LoadingButton" customModule="Pi_Media" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
+                                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Cancel Download"/>
+                                                <connections>
+                                                    <action selector="cancelPress" destination="Wmc-QH-M37" eventType="touchUpInside" id="MBD-bg-D37"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="A6p-nM-kzc"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1yQ-0K-vK9" firstAttribute="top" secondItem="Fmz-Qv-3Mx" secondAttribute="top" constant="16" id="19I-fh-XYx"/>
+                            <constraint firstItem="1yQ-0K-vK9" firstAttribute="leading" secondItem="Fmz-Qv-3Mx" secondAttribute="leading" constant="16" id="JOD-ia-LAf"/>
+                            <constraint firstItem="Fmz-Qv-3Mx" firstAttribute="trailing" secondItem="1yQ-0K-vK9" secondAttribute="trailing" constant="16" id="fth-HA-Tld"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fmz-Qv-3Mx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5sr-MV-LaO"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="HEf-iq-0Ck" id="EDw-yM-z20"/>
+                        <outlet property="deleteButton" destination="1AG-mG-LKL" id="0wF-jO-H3n"/>
+                        <outlet property="downloadButton" destination="t4o-mr-j5i" id="OFk-A0-RhQ"/>
+                        <outlet property="playButton" destination="LxB-iP-G0t" id="CEo-7h-Km2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cja-0H-j63" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1651" y="138"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,21 +1,34 @@
 const express = require("express");
 const { exec } = require("child_process");
 const app = express();
-var bodyParser = require("body-parser");
 const Client = require("ssh2-sftp-client");
+var bodyParser = require("body-parser");
 const fs = require("fs");
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-const sftp = new Client("example-client");
-const blacklistFiles = ["filezilla", "", "vpn", "watch", ".htaccess"];
+// TODO: - Temporary fix to handle multiple connections
+const sftpDownload = new Client("download-client");
+const sftpBasic = new Client("basic-client");
+//
 
-const config = {};
+const blacklistFiles = ["filezilla", "", "vpn", "watch", ".htaccess"];
+const defaultLocalDir = "./downloads/";
+const defaultRemoteDir = "/"; // enter default directory here
+
+const config = {
+  host: `${process.env.HOST}`,
+  username: `${process.env.USERNAME}`,
+  password: `${process.env.PASS}`,
+};
+
+console.log("Authenticating with", process.env.HOST, process.env.USERNAME, process.env.PASS)
 
 const playFile = async (req, res) => {
   const { filename } = req.body;
 
   exec(`vlc -f ${defaultLocalDir}${filename}`, (error, stdout) => {
+    console.log(`playing ${defaultLocalDir}${filename}`);
     if (error) {
       console.log(`error: ${error.message}`);
       res.send(false);
@@ -45,14 +58,14 @@ const downloadFile = async (req, res) => {
   let remotePath = `${defaultRemoteDir}${filename}`;
   let dst = fs.createWriteStream(`${defaultLocalDir}${filename}`);
 
-  sftp
+  sftpDownload
     .connect(config)
     .then(() => {
-      return sftp.get(remotePath, dst);
+      res.send(true);
+      return sftpDownload.get(remotePath, dst);
     })
     .then((data) => {
-      sftp.end();
-      res.send(true);
+      sftpDownload.end();
     })
     .catch((err) => {
       console.log(`Error: ${err.message}`);
@@ -62,14 +75,23 @@ const downloadFile = async (req, res) => {
 
 const getFiles = async (res) => {
   const filesInLocalDirectory = fs.readdirSync(defaultLocalDir);
-  const checkDownloadStatus = (_name) => {
-    return !!filesInLocalDirectory.find((name) => name === _name);
+  const getStatus = (file) => {
+    const foundFile = filesInLocalDirectory.find((name) => name === file.name);
+    if (!!foundFile) {
+      const localFile = fs.statSync(`${defaultLocalDir}${foundFile}`);
+      if (file.size === localFile["size"]) {
+        return "COMPLETE";
+      } else {
+        return "PROGRESS";
+      }
+    }
+    return "AVAILABLE";
   };
 
-  sftp
+  sftpBasic
     .connect(config)
     .then(() => {
-      return sftp.list(defaultRemoteDir);
+      return sftpBasic.list(defaultRemoteDir);
     })
     .then((data) => {
       const filteredFiles = data.filter(
@@ -81,10 +103,10 @@ const getFiles = async (res) => {
       const mappedFiles = sortedFiles.map((file) => ({
         name: file.name,
         size: file.size,
-        downloaded: checkDownloadStatus(file.name),
+        status: getStatus(file),
       }));
       res.send(mappedFiles);
-      return sftp.end();
+      return sftpBasic.end();
     })
     .catch((err) => {
       console.log(`Error: ${err.message}`);
@@ -116,7 +138,7 @@ app.post("/files/play", function (req, res) {
 app.post("/files/cancel", async (req, res) => {
   console.log("/files/cancel");
   res.send(true);
-  sftp.end();
+  sftpDownload.end();
 });
 
-app.listen(8080, () => console.log("Listening on port 8080!"));
+app.listen(3000, () => console.log("Listening on port 3000!"));
